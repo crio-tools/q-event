@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import EventCard from "@/components/EventCard";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 
 function NoSSREventPage() {
