@@ -1,5 +1,4 @@
 'use client'
-export const dynamic = "force-dynamic";
 
 import React, { useState, useEffect } from "react";
 import EventCard from "@/components/EventCard";
@@ -15,8 +14,13 @@ function EventPage(){
 
   useEffect(() => {
     const fetchEvents = async() => {
-      const data = await fetch("https://qevent-backend.labs.crio.do/events");
-      const eventData = await data.json();
+      let eventData = [];
+      try {
+        const res = await fetch('https://qevent-backend.labs.crio.do/api/events');
+        if (res.ok) events = await res.json();
+      } catch (e) {
+        console.error("Backend not reachable, skipping...");
+      }
 
       let filteredEvents = []
 
