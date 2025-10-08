@@ -1,5 +1,5 @@
-export const dynamic = "force-dynamic";
 'use client';
+export const dynamic = "force-dynamic";
 
 import React, { useState, useEffect } from "react";
 import EventCard from "@/components/EventCard";
@@ -39,7 +39,7 @@ function EventPage() {
     };
 
     fetchEvents();
-  }, [tagQuery, artistQuery]); // include dependencies!
+  }, [tagQuery, artistQuery]);
 
   return (
     <div className="h-full w-full flex-wrap flex items-center justify-around mt-8 mb-32">
