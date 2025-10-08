@@ -1,45 +1,48 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from "react";
 import EventCard from "@/components/EventCard";
 import { useSearchParams } from "next/navigation";
 
-function EventPage(){
-
+function EventPage() {
   const searchParams = useSearchParams();
-  const tagQuery = searchParams.get('tag')
-  const artistQuery = searchParams.get('artist')
-  const [events, setEvents] = useState([])
-
+  const tagQuery = searchParams.get('tag');
+  const artistQuery = searchParams.get('artist');
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const fetchEvents = async() => {
+    const fetchEvents = async () => {
       let eventData = [];
       try {
         const res = await fetch('https://qevent-backend.labs.crio.do/api/events');
-        if (res.ok) events = await res.json();
+        if (res.ok) {
+          eventData = await res.json();
+        }
       } catch (e) {
         console.error("Backend not reachable, skipping...");
       }
 
-      let filteredEvents = []
+      let filteredEvents = [];
 
-      if(tagQuery){
-        filteredEvents = eventData.filter(event => event.tags.includes(tagQuery))
-      }else if(artistQuery){
-        filteredEvents = eventData.filter(event => event.artist.toLowerCase() === artistQuery.toLowerCase())
-      }else {
-        filteredEvents = eventData
+      if (tagQuery) {
+        filteredEvents = eventData.filter(event => event.tags.includes(tagQuery));
+      } else if (artistQuery) {
+        filteredEvents = eventData.filter(event => 
+          event.artist.toLowerCase() === artistQuery.toLowerCase()
+        );
+      } else {
+        filteredEvents = eventData;
       }
-      
-      setEvents(filteredEvents)
-    }
+
+      setEvents(filteredEvents);
+    };
+
     fetchEvents();
-  },[])
+  }, [tagQuery, artistQuery]); // include dependencies!
 
   return (
     <div className="h-full w-full flex-wrap flex items-center justify-around mt-8 mb-32">
-      {events && events.map((eventData) => (
+      {events.map((eventData) => (
         <EventCard key={eventData.id} eventData={eventData} />
       ))}
     </div>
