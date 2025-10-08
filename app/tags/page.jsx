@@ -38,6 +38,3 @@ const TagsPage = () => {
 };
 
 export default TagsPage;
-
-
-export default TagsPage;
