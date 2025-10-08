@@ -1,11 +1,15 @@
-export const dynamic = "force-dynamic";
-
 import React from "react";
 import ArtistCard from "@/components/ArtistCard";
 
 async function ArtistsPage() {
   
-  const data = await fetch("https://qevent-backend.labs.crio.do/artists");
+  const data = [];
+  try {
+    const res = await fetch('https://qevent-backend.labs.crio.do/api/artists');
+    if (res.ok) data = await res.json();
+  } catch (e) {
+    console.error("Backend not reachable, skipping...");
+  }
   const artists = await data.json();
   
   return (
