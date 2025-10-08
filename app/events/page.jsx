@@ -51,6 +51,6 @@ function NoSSREventPage() {
 
 const EventPage = dynamic(() => Promise.resolve(NoSSREventPage), {
   ssr: false,
-};
+});
 
 export default EventPage;
