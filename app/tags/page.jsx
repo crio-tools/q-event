@@ -1,5 +1,5 @@
-export const dynamic = "force-dynamic";
 'use client'
+export const dynamic = "force-dynamic";
 import Tag from "@/components/Tag";
 import { useRouter } from "next/navigation";
 
