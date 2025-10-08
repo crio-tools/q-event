@@ -1,15 +1,17 @@
 'use client'
-export const dynamic = "force-dynamic";
 import Tag from "@/components/Tag";
 import { useRouter } from "next/navigation";
 
 const TagsPage = async () => {
 
   const router = useRouter();
-  
-  const data = await fetch("https://qevent-backend.labs.crio.do/tags");
-  const tags = await data.json();
-  
+  let tags = [];
+  try {
+    const res = await fetch('https://qevent-backend.labs.crio.do/api/tags');
+    if (res.ok) tags = await res.json();
+  } catch (e) {
+    console.error("Backend not reachable, skipping...");
+  }
   
   return (
     <div className="h-[80vh] flex justify-center items-center">
