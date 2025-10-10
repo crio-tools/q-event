@@ -11,7 +11,7 @@ const TagsPage = () => {
   useEffect(() => {
     async function fetchTags() {
       try {
-        const res = await fetch('https://qevent-backend.labs.crio.do/api/tags');
+        const res = await fetch('https://qevent-backend.labs.crio.do/tags');
         if (res.ok) {
           const data = await res.json();
           setTags(data);
