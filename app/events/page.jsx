@@ -15,7 +15,7 @@ function NoSSREventPage() {
     const fetchEvents = async () => {
       let eventData = [];
       try {
-        const res = await fetch('https://qevent-backend.labs.crio.do/api/events');
+        const res = await fetch('https://qevent-backend.labs.crio.do/events');
         if (res.ok) {
           eventData = await res.json();
         }
