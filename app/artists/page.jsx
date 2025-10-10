@@ -9,7 +9,7 @@ function ArtistsPage() {
   useEffect(() => {
     async function fetchArtists() {
       try {
-        const res = await fetch('https://qevent-backend.labs.crio.do/api/artists');
+        const res = await fetch('https://qevent-backend.labs.crio.do/artists');
         if (res.ok) {
           const data = await res.json();
           setArtists(data);
